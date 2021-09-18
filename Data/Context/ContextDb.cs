@@ -13,6 +13,13 @@ namespace Data.Context
             _configuration = configuration;
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .EnableSensitiveDataLogging()
+                .UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             ModelBuilderExtension.CreateModelBuilder(builder);
