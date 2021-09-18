@@ -1,23 +1,34 @@
-﻿using System.Threading.Tasks;
-using API.Controllers;
+﻿using API.Controllers;
 using Business.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+using Business.Interfaces.Cliente;
+using Business.Requests;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace API.V1.Controllers
 {
-    [Authorize]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/Cliente")]
     public class ClienteController : MainController
     {
-        public ClienteController(INotificador notificador) : base(notificador)
+        private readonly IClienteService _clienteService;
+
+        public ClienteController(INotificador notificador, IClienteService clienteService) : base(notificador)
         {
+            _clienteService = clienteService;
         }
 
         [HttpGet("List")]
         public async Task<IActionResult> List()
         {
+            var result = await _clienteService.ListAsync();
+            return CustomResponse(result);
+        }
+
+        [HttpPost("Post")]
+        public async Task<IActionResult> Post(PostClienteRequest request)
+        {
+            await _clienteService.PostCliente(request);
             return CustomResponse();
         }
     }

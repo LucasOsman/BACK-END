@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity>
-        where TEntity : Entity, new()
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {
         protected readonly ContextDb Db;
         protected readonly DbSet<TEntity> DbSet;
 
-        protected Repository(Context.ContextDb db)
+        protected Repository(ContextDb db)
         {
             Db = db;
             DbSet = db.Set<TEntity>();
