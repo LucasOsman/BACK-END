@@ -17,5 +17,10 @@ namespace Data.Repositories
         {
             return await Db.Cliente.ToListAsync();
         }
+
+        public async Task<Cliente> GetClienteById(long id)
+        {
+            return await Db.Cliente.FirstOrDefaultAsync(cliente => cliente.Id == id);
+        }
     }
 }

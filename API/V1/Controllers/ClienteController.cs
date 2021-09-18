@@ -28,8 +28,22 @@ namespace API.V1.Controllers
         [HttpPost("Post")]
         public async Task<IActionResult> Post(PostClienteRequest request)
         {
-            await _clienteService.PostCliente(request);
-            return CustomResponse();
+            await _clienteService.PostClienteAsync(request);
+            return CustomResponse("Criado com sucesso!");
+        }
+
+        [HttpPut("Put")]
+        public async Task<IActionResult> Put(PutClienteRequest request)
+        {
+            await _clienteService.PutClienteAsync(request);
+            return CustomResponse("Editado com sucesso!");
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(DeleteClienteRequest request)
+        {
+            await _clienteService.DeleteClienteAsync(request);
+            return CustomResponse("Deletado com sucesso!");
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Business.Interfaces.Cliente
     public interface IClienteService : IDisposable
     {
         Task<List<Models.Cliente>> ListAsync();
-        Task PostCliente(PostClienteRequest request);
+        Task PostClienteAsync(PostClienteRequest request);
+        Task PutClienteAsync(PutClienteRequest request);
+        Task DeleteClienteAsync(DeleteClienteRequest request);
     }
 }
