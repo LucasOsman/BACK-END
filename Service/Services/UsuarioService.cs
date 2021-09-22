@@ -5,6 +5,7 @@ using Business.Requests;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Business.DTOs;
 using Business.Notificacoes;
 
 namespace Service.Services
@@ -25,7 +26,7 @@ namespace Service.Services
             GC.SuppressFinalize(this);
         }
 
-        public async Task<List<Usuario>> ListAsync()
+        public async Task<List<UsuarioDto>> ListAsync()
         {
             return await _usuarioRepository.ListAsync();
         }
