@@ -34,7 +34,7 @@ namespace API.Configuration
 
             services.AddCors(options =>
             {
-                options.AddPolicy("Development",
+                options.AddPolicy("http://localhost:4200/",
                     builder => builder.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader());
@@ -48,7 +48,7 @@ namespace API.Configuration
 
             if (env.IsDevelopment())
             {
-                app.UseCors("Development");
+                app.UseCors("http://localhost:4200/");
                 app.UseDeveloperExceptionPage();
             }
 
