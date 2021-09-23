@@ -1,8 +1,8 @@
-﻿using Business.Requests;
+﻿using Business.DTOs;
+using Business.Requests;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Business.DTOs;
 
 namespace Business.Interfaces.Usuario
 {
@@ -12,5 +12,6 @@ namespace Business.Interfaces.Usuario
         Task PostUsuarioAsync(PostUsuarioRequest request);
         Task PutUsuarioAsync(PutUsuarioRequest request);
         Task DeleteUsuarioAsync(DeleteUsuarioRequest request);
+        Task<UsuarioDto> GetByIdAsync(long id);
     }
 }

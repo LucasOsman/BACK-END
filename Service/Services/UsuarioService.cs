@@ -82,5 +82,10 @@ namespace Service.Services
 
             await _usuarioRepository.DeleteAsync(usuario);
         }
+
+        public async Task<UsuarioDto> GetByIdAsync(long id)
+        {
+            return await _usuarioRepository.GetByIdForUpdate(id);
+        }
     }
 }

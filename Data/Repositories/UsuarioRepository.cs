@@ -20,11 +20,25 @@ namespace Data.Repositories
             return await Db.Usuario
                 .Select(usuario => new UsuarioDto
                 {
+                    Id = usuario.Id,
                     Nome = usuario.Nome,
                     Login = usuario.Login,
                     DataCadastro = usuario.DataCadastro,
                     DataAtualizacao = usuario.DataAtualizacao
                 }).ToListAsync();
+        }
+
+        public async Task<UsuarioDto> GetByIdForUpdate(long id)
+        {
+            return await Db.Usuario.Where(usuario => usuario.Id == id)
+                .Select(usuario => new UsuarioDto
+                {
+                    Id = usuario.Id,
+                    Nome = usuario.Nome,
+                    Login = usuario.Login,
+                    DataCadastro = usuario.DataCadastro,
+                    DataAtualizacao = usuario.DataAtualizacao
+                }).FirstOrDefaultAsync();
         }
 
         public async Task<Usuario> GetUsuarioById(long id)

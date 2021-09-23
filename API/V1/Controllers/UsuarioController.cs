@@ -24,6 +24,13 @@ namespace API.V1.Controllers
             return CustomResponse(result);
         }
 
+        [HttpPost("GetById")]
+        public async Task<IActionResult> GetById(GetByIdUsuarioRequest request)
+        {
+            var result = await _usuarioService.GetByIdAsync(request.Id);
+            return CustomResponse(result);
+        }
+
         [HttpPost("Post")]
         public async Task<IActionResult> Post(PostUsuarioRequest request)
         {
