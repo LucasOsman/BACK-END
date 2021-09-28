@@ -1,7 +1,9 @@
 using API.Configuration;
+using Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,7 +32,8 @@ namespace API
                     .ResolveDependencies()
                     .ResolveRepositories()
                     .ResolveServices()
-                    .AddSwaggerConfig();
+                    .AddSwaggerConfig()
+                    .AddDbContext<ContextDb>( db => db.UseInMemoryDatabase("database"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
