@@ -27,13 +27,12 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddJwtConfig(Configuration)
-                    .AddApiConfig(Configuration)
+            services.AddApiConfig(Configuration)
                     .ResolveDependencies()
                     .ResolveRepositories()
                     .ResolveServices()
                     .AddSwaggerConfig()
-                    .AddDbContext<ContextDb>( db => db.UseInMemoryDatabase("database"));
+                    .AddDbContext<ContextDb>( db => db.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)

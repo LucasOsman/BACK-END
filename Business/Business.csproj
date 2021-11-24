@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.3.3" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,9 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Filters\" />
     <Folder Include="Interfaces\Equipe\" />
-    <Folder Include="Validations\" />
   </ItemGroup>
 
 </Project>
