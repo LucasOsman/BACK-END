@@ -8,6 +8,7 @@ namespace Business.Models
         public string Descricao { get; set; }
         public long IdEquipe { get; set; }
         public int Status { get; set; }
+        public bool Excluido { get; set; }
         public DateTime DataCadastro { get; set; }
 
         public override string ToString()

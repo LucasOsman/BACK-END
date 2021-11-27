@@ -56,7 +56,7 @@ namespace Service.Services
 
             cliente.Nome = request.Nome;
             cliente.Email = request.Email;
-            cliente.Telefone = request.Email;
+            cliente.Telefone = request.Telefone;
             cliente.DataAtualizacao = DateTime.Now;
 
             await _clienteRepository.UpdateAsync(cliente);

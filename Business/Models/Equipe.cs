@@ -7,8 +7,9 @@ namespace Business.Models
         public string Nome { get; set; }
         public string Observacao { get; set; }
         public long IdUsuario { get; set; }
+        public bool Excluido { get; set; }
         public DateTime DataCadastro { get; set; }
-        public DateTime DataAtualizao { get; set; }
+        public DateTime DataAtualizacao { get; set; }
 
         public override string ToString()
         {

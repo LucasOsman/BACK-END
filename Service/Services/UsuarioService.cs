@@ -46,6 +46,7 @@ namespace Service.Services
                 Login = request.Login,
                 Nome = request.Nome,
                 Senha = request.Senha,
+                Excluido = false,
                 DataCadastro = DateTime.Now,
                 DataAtualizacao = DateTime.Now
             };
@@ -65,6 +66,7 @@ namespace Service.Services
 
             usuario.Nome = request.Nome;
             usuario.Senha = request.Senha;
+            usuario.Excluido = false;
             usuario.DataAtualizacao = DateTime.Now;
 
             await _usuarioRepository.UpdateAsync(usuario);
@@ -80,7 +82,9 @@ namespace Service.Services
                 return;
             }
 
-            await _usuarioRepository.DeleteAsync(usuario);
+            usuario.Excluido = true;
+
+            await _usuarioRepository.UpdateAsync(usuario);
         }
 
         public async Task<UsuarioDto> GetByIdAsync(long id)

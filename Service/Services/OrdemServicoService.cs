@@ -49,6 +49,7 @@ namespace Service.Services
                 Descricao = request.Descricao,
                 IdEquipe = request.IdEquipe,
                 Status = request.Status,
+                Excluido = false,
                 DataCadastro = DateTime.Now
             };
 
@@ -58,7 +59,7 @@ namespace Service.Services
         public async Task PutOrdemServicoAsync(PutOrdemServicoRequest request)
         {
             var os = await _ordemServicoRepository.GetOrdemServicoById(request.IdOrdemServico);
-            var equipeExiste = await _equipeRepository.EquipeExiste(request.IdEquipe);
+            var equipeExiste = await _equipeRepository.GetEquipeById(request.IdEquipe);
 
             if (os == null)
             {
@@ -76,6 +77,7 @@ namespace Service.Services
             os.Descricao = request.Descricao;
             os.Status = request.Status;
             os.IdEquipe = request.IdEquipe;
+            os.Excluido = false;
             os.DataCadastro = DateTime.Now;
 
             await _ordemServicoRepository.UpdateAsync(os);
@@ -91,7 +93,9 @@ namespace Service.Services
                 return;
             }
 
-            await _ordemServicoRepository.DeleteAsync(os);
+            os.Excluido = true;
+
+            await _ordemServicoRepository.UpdateAsync(os);
         }
     }
 }

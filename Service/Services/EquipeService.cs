@@ -48,8 +48,9 @@ namespace Service.Services
                 Nome = request.Nome,
                 Observacao = request.Observacao,
                 IdUsuario = request.IdUsuario,
+                Excluido = false,
                 DataCadastro = DateTime.Now,
-                DataAtualizao = DateTime.Now
+                DataAtualizacao = DateTime.Now
             };
 
             await _equipeRepository.CreateAsync(usuario);
@@ -75,7 +76,8 @@ namespace Service.Services
             equipe.Nome = request.Nome;
             equipe.Observacao = request.Observacao;
             equipe.IdUsuario = request.IdUsuario;
-            equipe.DataAtualizao = DateTime.Now;
+            equipe.Excluido = false;
+            equipe.DataAtualizacao = DateTime.Now;
 
             await _equipeRepository.UpdateAsync(equipe);
         }
@@ -90,7 +92,9 @@ namespace Service.Services
                 return;
             }
 
-            await _equipeRepository.DeleteAsync(equipe);
+            equipe.Excluido = true;
+
+            await _equipeRepository.UpdateAsync(equipe);
         }
     }
 }
