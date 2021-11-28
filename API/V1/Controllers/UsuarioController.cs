@@ -21,7 +21,7 @@ namespace API.V1.Controllers
         public async Task<IActionResult> List()
         {
             var result = await _usuarioService.ListAsync();
-            return CustomResponse(result);
+            return CustomResponse(result); 
         }
 
         [HttpGet("GetById")]
